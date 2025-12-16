@@ -9,7 +9,7 @@ resource "aws_instance" "ec2_instance" {
     {
       Name = "${var.project}-${var.instances[count.index]}-${terraform.workspace}"
       Component = var.instances[count.index]
-      Environment = terraform.workspace
+      Environment = terraform.workspace #terraform.workspace is special variable
     }
   )
 }
