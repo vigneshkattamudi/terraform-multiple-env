@@ -1,8 +1,8 @@
 variable "instance_type" {
-    default = {
-        dev = "t3.micro"
-        prod = "t3.small"
-    }
+  default = {
+    dev  = "t3.micro"
+    prod = "t3.small"
+  }
 }
 
 variable "ami_id" {
@@ -48,15 +48,15 @@ variable "sg_tags" {
 }
 
 variable "environiment" {
-    default = {
+  default = {
     dev  = "dev"
     prod = "prod"
-    }
- 
+  }
+
 }
 
 variable "instances" {
-  default = [ "mongodb" , "redis" ]
+  default = ["mongodb", "redis"]
 }
 
 variable "project" {
@@ -65,7 +65,7 @@ variable "project" {
 
 variable "common_tags" {
   default = {
-    project = "roboshop"
+    project   = "roboshop"
     terraform = "true"
   }
 }
