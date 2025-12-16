@@ -1,13 +1,15 @@
 resource "aws_instance" "ec2_instance" {
   count = length(var.instances) # count based loop is a list always
-  ami                    = "ami-09c813fb71547fc4f"
-  instance_type          = ""
+  ami                    = var.ami_id
+  instance_type          = var.instance_type
   vpc_security_group_ids = [aws_security_group.all-allow.id]
 
-  tags = {
-    Name = var.instances[count.index]
-    environment = ""
+  tags = merge(var.common_tags,
+    {
+    Name = "${var.project}-${var.instances[count.index]}-${var.environiment}"
+    Environment = var.environiment
   }
+  )
 }
 
 resource "aws_security_group" "all-allow" {
@@ -29,7 +31,10 @@ resource "aws_security_group" "all-allow" {
   }
 
 
-  tags = {
-    Name = "allow-all"
-  }
+  tags = merge(var.common_tags,
+    {
+    Name = "${var.project}-${var.sg_name}-${var.environiment}"
+    Environment = var.environiment
+    }
+  )
 }

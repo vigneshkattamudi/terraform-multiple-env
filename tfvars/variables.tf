@@ -46,17 +46,19 @@ variable "sg_tags" {
 
 variable "environiment" {
  
-  
 }
 
 variable "instances" {
-  default = [ "mongodb" , "redis", "mysql" ]
+  default = [ "mongodb" , "redis" ]
 }
 
-variable "zone_id" {
-  default = "Z0443285370E15R10QIN"
+variable "project" {
+  default = "roboshop"
 }
 
-variable "domain_name" {
-  default = "dsops84.space"
+variable "common_tags" {
+  default = {
+    project = "roboshop"
+    terraform = "true"
+  }
 }
