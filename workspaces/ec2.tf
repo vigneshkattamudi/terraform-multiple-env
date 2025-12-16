@@ -1,7 +1,7 @@
 resource "aws_instance" "ec2_instance" {
   count = length(var.instances) # count based loop is a list always
   ami                    = var.ami_id
-  instance_type          = lookup(var.instance_type, terraform.workspace, "t3.big")
+  instance_type          = lookup(var.instance_type, terraform.workspace, "t3.big") #lookup(map, key, default)
   vpc_security_group_ids = [aws_security_group.all-allow.id]
 
   tags = merge(
@@ -40,3 +40,6 @@ resource "aws_security_group" "all-allow" {
     }
   )
 }
+
+#Usage of terraform.workspace to get current workspace name
+# terraform workspace <options>
